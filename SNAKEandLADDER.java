@@ -1,9 +1,16 @@
 public class SnakeAndLadder{
 	
-	public static void main(String args[])
-	{
-	    int position=0;
-		System.out.println("Snake and Ladder game played with single player at start position : " +position);
+	Random rand = new Random();
+	
+	public static void main(String args[]) {
+		
+		SnakeAndLadder obj=new SnakeAndLadder();
+		System.out.println("Dice value : "+obj.DiceRoll());
+	}
+	
+	public int DiceRoll(){
+		int DiceRoll = (rand.nextInt(6))+1;
+		return DiceRoll;
 	}
 
 }
