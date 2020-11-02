@@ -2,7 +2,8 @@ public class SnakeAndLadder{
 	
 	int CurrentPosition = 0;
 	int DiceResult = 0;
-
+	int WinningPosition = 100;
+	
 	public static void main(String args[]){
 		SnakeAndLadder obj = new SnakeAndLadder();
 		System.out.println("Player Position : "+ obj.CheckOptions());
@@ -15,28 +16,37 @@ public class SnakeAndLadder{
 	}
 
 	public int CheckOptions(){
-
+		
+		while(CurrentPosition < WinningPosition){
 		int CheckOptionsForPlay = DiceRoll(3);
 
 		switch(CheckOptionsForPlay){
 
          	case 1:
-            		System.out.println("No play");
+            		System.out.println("\nNo play and Current Position is " + CurrentPosition);
          	break;
 
          	case 2:
-            		System.out.println("You got Snake");
-            		DiceResult=DiceRoll(6);
-            		CurrentPosition -= DiceResult;
+            		DiceResult = DiceRoll(6);
+
+			if(CurrentPosition <= DiceResult){
+                  	CurrentPosition = 0;
+                  	System.out.println("\nYou got Snake with dice face of " + DiceResult + " and Current Position is " + CurrentPosition);
+               		}
+ 
+              		else{
+                  	CurrentPosition -= DiceResult;
+                  	System.out.println("\nYou got Snake with dice face of " + DiceResult + " and Current Position is " + CurrentPosition);
+               		}
          	break;
 
          	case 3:
-            		System.out.println("You got Ladder");
             		DiceResult = DiceRoll(6);
-            		CurrentPosition += DiceResult;
-         	break;
-
-      		}
-      	return CurrentPosition;
-	}
+               		CurrentPosition += DiceResult;
+               		System.out.println("\nYou got Ladder with dice face of " + DiceResult + " and Current Position is " + CurrentPosition);
+            break;
+		 }
+      }
+      return CurrentPosition;
+   }
 }
