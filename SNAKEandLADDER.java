@@ -42,11 +42,24 @@ public class SnakeAndLadder{
 
          	case 3:
             		DiceResult = DiceRoll(6);
-               		CurrentPosition += DiceResult;
-               		System.out.println("\nYou got Ladder with dice face of " + DiceResult + " and Current Position is " + CurrentPosition);
+
+                    //current Position + dice should not exceed winning position
+                    if(CurrentPosition + DiceResult > WinningPosition){
+
+                        //Dice roll Should result into exact number to Winning Position
+                        while(CurrentPosition + DiceResult == WinningPosition){
+                            DiceResult = DiceRoll(6);
+                            CurrentPosition += DiceResult;
+                        }
+                        break;
+                    }
+                    else {
+                        CurrentPosition += DiceResult;
+                        System.out.println("\nYou got Ladder with dice face of " + DiceResult + " and Current Position is " + CurrentPosition);
             break;
 		 }
-      }
+      		}
+	}
       return CurrentPosition;
    }
 }
