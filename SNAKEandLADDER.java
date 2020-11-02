@@ -2,6 +2,7 @@ public class SnakeAndLadder{
 	
 	int CurrentPosition = 0;
 	int DiceResult = 0;
+	int DiceRollCount = 0;
 	int WinningPosition = 100;
 	
 	public static void main(String args[]){
@@ -12,6 +13,7 @@ public class SnakeAndLadder{
 	public int DiceRoll(int RollMax){
 		Random rand = new Random();
 		int DiceRoll = (rand.nextInt(RollMax)) + 1;
+		DiceRollCount++;
 		return DiceRoll;
 	}
 
@@ -43,10 +45,8 @@ public class SnakeAndLadder{
          	case 3:
             		DiceResult = DiceRoll(6);
 
-                    //current Position + dice should not exceed winning position
                     if(CurrentPosition + DiceResult > WinningPosition){
 
-                        //Dice roll Should result into exact number to Winning Position
                         while(CurrentPosition + DiceResult == WinningPosition){
                             DiceResult = DiceRoll(6);
                             CurrentPosition += DiceResult;
@@ -60,6 +60,7 @@ public class SnakeAndLadder{
 		 }
       		}
 	}
+	System.out.println("\nNumber of times dice was rolled to win the game"+DiceRollCount);
       return CurrentPosition;
    }
 }
